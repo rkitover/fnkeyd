@@ -72,7 +72,7 @@ int main(int argc, char** argv)
 
                 ev_rc = libevdev_next_event(dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
 
-                if (ev_rc == 0 && ev.type == EV_MSC && ev.code == MSC_SCAN && ev.value == 0xf8) {
+                if (ev_rc == 0 && ev.type == EV_MSC && ev.code == MSC_SCAN && (ev.value == 0xf8 || ev.value == 0xe3)) {
                         rc = emit(uidev, EV_KEY, KEY_LEFTSHIFT, down);
                         if (rc != 0)
                                 goto error;
